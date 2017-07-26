@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MovieAppV2</string>
+    <string name="menu_toprated">TopRated</string>
+</resources>
