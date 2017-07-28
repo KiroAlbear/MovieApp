@@ -60,14 +60,13 @@ public class Main3Activity extends AppCompatActivity {
 
 
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if(!helper.IsMovieExist(movie.getMovie_id())){
-                        InsertData(movie.getMovie_id(),movie.getName(),movie.getOverview(),movie.getRelease_date(),movie.getImageUrl());
+                    if((helper.IsMovieExist(movie.getMovie_id()))){
+                        Toast t =  Toast.makeText(getBaseContext(),"Already Exist", Toast.LENGTH_SHORT);
+                        t.show();
                     }
                     else
                     {
-
-                        Toast t =  Toast.makeText(getBaseContext(), movie.getName() +" Already Exist", Toast.LENGTH_SHORT);
-                        t.show();
+                        InsertData(movie.getMovie_id(),movie.getName(),movie.getOverview(),movie.getRelease_date(),movie.getImageUrl());
                     }
 
                     // favourite.setBackgroundColor(Color.parseColor("#ed00e4cd"));
@@ -104,7 +103,7 @@ public class Main3Activity extends AppCompatActivity {
 
     public void InsertData(String id,String Name,String overView,String DataReleased,String imageURL) {
         helper.Insert(id,Name,overView,DataReleased,imageURL);
-        Toast toast =  Toast.makeText(this, Name +" Added To Favourite", Toast.LENGTH_SHORT);
+        Toast toast =  Toast.makeText(this,"Added To Favourite", Toast.LENGTH_SHORT);
        toast.show();
     }
 

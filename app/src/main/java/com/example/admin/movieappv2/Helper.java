@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.gesture.GestureOverlayView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Admin on 28/07/2017.
@@ -77,11 +78,12 @@ public class Helper extends SQLiteOpenHelper {
         SQLiteDatabase sql = getReadableDatabase();
         Movie movie;
         Cursor c = sql.query(Contract.table_name, new String[]{Contract.MovieId_column}, null, null, null, null, null);
+
         c.moveToFirst();
 
         for (int i = 0; i < c.getCount(); i++) {
-            movie = new Movie();
-            if (id == c.getString(0)){return true;}
+
+            if (id.equals(c.getString(0))){return true;}
 
             c.moveToNext();
         }
