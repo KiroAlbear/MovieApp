@@ -17,19 +17,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/movieBackground"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop"
+                />
+
             <TextView
 
                 android:id="@+id/MovieName"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="#009687"
-                android:gravity="left|center"
+                android:layout_height="230dp"
+                android:background="#61232929"
+                android:gravity="left|bottom"
+                android:paddingBottom="25dp"
                 android:paddingLeft="19dp"
                 android:text="hello how are you"
                 android:textColor="#ffffff"
                 android:textSize="24dp"
                 android:textStyle="bold"
-
 
                 />
 
@@ -37,13 +44,13 @@
                 android:id="@+id/smallImage"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
-                android:layout_below="@+id/MovieName"
+                android:layout_below="@+id/movieBackground"
                 android:layout_marginTop="15dp" />
 
             <TextView
                 android:id="@+id/releasDate"
-                android:layout_width="115dp"
-                android:layout_height="75dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/smallImage"
                 android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
@@ -53,6 +60,15 @@
                 android:layout_toRightOf="@+id/smallImage"
                 android:textColor="#e7645c5c"
                 android:textSize="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/releasDate"
+                android:layout_toRightOf="@id/smallImage"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="9dp"
+
+                android:id="@+id/textView" />
 
             <TextView
                 android:id="@+id/OverViewTitle"
@@ -91,14 +107,13 @@
                 android:id="@+id/favourit"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
-                android:layout_alignBottom="@+id/releasDate"
-                android:layout_alignEnd="@+id/line"
-                android:layout_alignRight="@+id/line"
-                android:layout_marginBottom="77dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/round_button"
                 android:drawableTop="@drawable/whiteheart"
                 android:paddingTop="22dp"
-                android:background="@drawable/round_button"
-                />
+                android:layout_above="@+id/textView"
+                android:layout_alignRight="@+id/line"
+                android:layout_alignEnd="@+id/line" />
 
 
         </RelativeLayout>

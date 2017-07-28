@@ -24,6 +24,7 @@ public class Main3Activity extends AppCompatActivity {
     TextView releasedate;
     Button favourite;
     boolean pressed;
+    ImageView MovieBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,11 @@ public class Main3Activity extends AppCompatActivity {
         overview = (TextView) findViewById(R.id.overView);
         smallimage = (ImageView) findViewById(R.id.smallImage);
         releasedate = (TextView) findViewById(R.id.releasDate);
+        moviename = (TextView) findViewById(R.id.MovieName);
+        MovieBackground = (ImageView) findViewById(R.id.movieBackground);
         helper = new Helper(this);
         bundle = getIntent().getExtras();
-         pressed =false;
+        pressed = false;
         movie = (Movie) getIntent().getSerializableExtra("obj");
 
 
@@ -48,6 +51,7 @@ public class Main3Activity extends AppCompatActivity {
         releasedate.setText(movie.release_date);
         //  ((Editable) releasedate.getText()).insert(23, movie.release_date);
         Picasso.with(this).load("http://image.tmdb.org/t/p/w185" + movie.getImageUrl()).into(this.smallimage);
+        Picasso.with(this).load("http://image.tmdb.org/t/p/w185" + movie.getImageUrl()).into(this.MovieBackground);
 
 //        moviename = (TextView) findViewById(R.id.MovieName);
         favourite.setOnTouchListener(new View.OnTouchListener() {
@@ -60,13 +64,11 @@ public class Main3Activity extends AppCompatActivity {
 
 
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if((helper.IsMovieExist(movie.getMovie_id()))){
-                        Toast t =  Toast.makeText(getBaseContext(),"Already Exist", Toast.LENGTH_SHORT);
+                    if ((helper.IsMovieExist(movie.getMovie_id()))) {
+                        Toast t = Toast.makeText(getBaseContext(), "Already Exist", Toast.LENGTH_SHORT);
                         t.show();
-                    }
-                    else
-                    {
-                        InsertData(movie.getMovie_id(),movie.getName(),movie.getOverview(),movie.getRelease_date(),movie.getImageUrl());
+                    } else {
+                        InsertData(movie.getMovie_id(), movie.getName(), movie.getOverview(), movie.getRelease_date(), movie.getImageUrl());
                     }
 
                     // favourite.setBackgroundColor(Color.parseColor("#ed00e4cd"));
@@ -101,10 +103,10 @@ public class Main3Activity extends AppCompatActivity {
 
     }
 
-    public void InsertData(String id,String Name,String overView,String DataReleased,String imageURL) {
-        helper.Insert(id,Name,overView,DataReleased,imageURL);
-        Toast toast =  Toast.makeText(this,"Added To Favourite", Toast.LENGTH_SHORT);
-       toast.show();
+    public void InsertData(String id, String Name, String overView, String DataReleased, String imageURL) {
+        helper.Insert(id, Name, overView, DataReleased, imageURL);
+        Toast toast = Toast.makeText(this, "Added To Favourite", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 }
