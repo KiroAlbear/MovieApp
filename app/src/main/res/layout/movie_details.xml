@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.example.admin.movieappv2.Main3Activity">
 
 
     <ScrollView
@@ -44,14 +44,34 @@
                 android:id="@+id/releasDate"
                 android:layout_width="115dp"
                 android:layout_height="75dp"
-                android:layout_below="@+id/MovieName"
+                android:layout_alignTop="@+id/smallImage"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="16dp"
+
+                android:layout_toEndOf="@+id/smallImage"
                 android:layout_toRightOf="@+id/smallImage"
                 android:textColor="#e7645c5c"
-                android:textSize="25dp"
+                android:textSize="25dp" />
 
-                />
+            <TextView
+                android:id="@+id/OverViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/smallImage"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9dp"
+                android:text="OverView" />
+
+            <TextView
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/OverViewTitle"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000" />
 
             <TextView
                 android:id="@+id/overView"
@@ -60,12 +80,25 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/smallImage"
+                android:layout_below="@+id/line"
                 android:paddingLeft="16dp"
                 android:paddingRight="10dp"
                 android:paddingTop="7dp"
                 android:textColor="#000000"
                 android:textSize="17dp" />
+
+            <Button
+                android:id="@+id/favourit"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_alignBottom="@+id/releasDate"
+                android:layout_alignEnd="@+id/line"
+                android:layout_alignRight="@+id/line"
+                android:layout_marginBottom="77dp"
+                android:drawableTop="@drawable/whiteheart"
+                android:paddingTop="22dp"
+                android:background="@drawable/round_button"
+                />
 
 
         </RelativeLayout>
