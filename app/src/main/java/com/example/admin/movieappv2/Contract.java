@@ -5,6 +5,12 @@ package com.example.admin.movieappv2;
  */
 
 public class Contract {
-    static String table_name="FavouritList";
-    static String MovieId_column="Movie_id";
+
+    static String table_name="FAVOURITLIST";
+    static String MovieId_column="MOVIE_ID";
+    static String MovieOverView_col="MOVIEW_OVERVIEW";
+    static String MovieTitle_col="MOVIE_TITLE";
+    static String MovieDate_col="MOVIE_DATE";
+    static String MovieImageURL_col="MOVIE_IMAGEURL";
+
 }
