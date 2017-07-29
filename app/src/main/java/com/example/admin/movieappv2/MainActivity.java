@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     Adapter myadapter;
     RequestQueue requestQueue;
-    Intent intent;
     Toolbar toolbar;
     String TopRatedUrl;
+    VolleyLib volleyLib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +59,20 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
         recyclerView = (RecyclerView) findViewById(R.id.RV_myView);
-        intent = new Intent(this, Main3Activity.class);
+
         //startActivity(intent);
         TopRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=a2a6577bddba0b92a5bb9571adf4f098";
 
-        volleyStringRquest(TopRatedUrl);
+        volleyLib = new VolleyLib(this, requestQueue);
+
+        volleyLib.volleyStringRquest(TopRatedUrl);
+
+       // mylist = new ArrayList<>();
 
 
-        mylist = new ArrayList<>();
 
 
-        myadapter = new Adapter(mylist, this);
-
-
-        recyclerView.setAdapter(myadapter);
+        recyclerView.setAdapter(volleyLib.getMyadapter());
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
 
@@ -80,49 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void volleyStringRquest(String Url) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Url, null,
-
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray;
-                            jsonArray = null;
-                            jsonArray = response.getJSONArray("results");
-                            if (mylist.size() > 0)
-                                mylist.clear();
-                            myadapter.notifyDataSetChanged();
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                Movie movie = new Movie();
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                                movie.setMovie_id(jsonObject.getString("id"));
-                                movie.setName(jsonObject.getString("title"));
-                                movie.setImageUrl(jsonObject.getString("poster_path"));
-                                movie.setOverview(jsonObject.getString("overview"));
-                                movie.setRelease_date(jsonObject.getString("release_date"));
-                                mylist.add(movie);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            textView.setText("JSONException");
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        textView.setText("onErrorResponse");
-                    }
-                }
-
-
-        );
-        requestQueue.add(jsonObjectRequest);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,13 +93,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.toprated) {
             TopRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=a2a6577bddba0b92a5bb9571adf4f098";
-            volleyStringRquest(TopRatedUrl);
+            volleyLib.volleyStringRquest(TopRatedUrl);
             setTitle("Top Rated");
         } else if (item.getItemId() == R.id.mostpopular) {
             TopRatedUrl = "https://api.themoviedb.org/3/movie/popular?api_key=a2a6577bddba0b92a5bb9571adf4f098";
-            volleyStringRquest(TopRatedUrl);
+            volleyLib.volleyStringRquest(TopRatedUrl);
             setTitle("Most Popular");
+        }else if(item.getItemId()==R.id.FavouriteActivity)
+        {
+            Intent in=new Intent(this,Favourite.class);
+            startActivity(in);
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

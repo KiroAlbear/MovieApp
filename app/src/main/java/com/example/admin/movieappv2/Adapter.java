@@ -88,6 +88,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
             intent.putExtra("position",position);
             intent.putExtra("obj",mylist.get(position));
+
 //           intent.putExtras("List",mylist);
             v.getContext().startActivity(intent);
 

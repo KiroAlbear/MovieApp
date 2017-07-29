@@ -12,7 +12,6 @@
 
     </item>
 
-
     <item
         android:id="@+id/mostpopular"
         android:title="Most Popular"
@@ -20,5 +19,10 @@
         >
 
     </item>
+
+    <item android:id="@+id/FavouriteActivity"
+        android:title="Favourite List"
+        app:showAsAction="never"
+        ></item>
 
 </menu>
